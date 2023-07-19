@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+SQLAlchemy
+pyodbc
+waitress
+opencv-python
+pathlib

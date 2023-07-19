@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Logs Do Sistema - Dmapla Sys</title>
+        <link rel="icon" href="{{url_for('static', filename='logo/icon.png')}}" type="image/png">
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #0069d9 !important;">
+            <div class="container">
+                <a class="navbar-brand" href="/"><img class="logo-img" src="{{url_for('static', filename='img/lgwhite.png')}}" alt="logo dmapla"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <p class="nav-link active">Usuário logado: <span style="color: green;"> <b>{{session['username']}}</b></span></p>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/perfil">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" style="color: red;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Jumbotron -->
+        <div class="jumbotron jumbotron-fluid bg-light text-center py-2 mb-0">
+            <div class="container">
+                <div style="width: 100%;display: flex;/* align-items: flex-end; */justify-content: flex-start;">
+                    <a href="/" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                      </svg> Voltar</a>
+                </div>
+                <p class="lead"><b>LOGS do Sistema.</b></p>
+            </div>
+            <div class="container">
+                {% if username == 'admin' %}
+                    <table class="table table-striped-columns">
+                        <tr>
+                            <th>id</th>
+                            <th>Usuário</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Ação</th>
+                        </tr>
+                        {% for l in logs_sys %}
+                            <tr>
+                                <td>{{l[0].id}}</td>
+                                <td>{{l[0].user}}</td>
+                                <td>{{l[0].date}}</td>
+                                <td>{{l[0].time}}</td>
+                                <td>{{l[0].action}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+        <div id="fullscreen">
+            <div style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <div class="container c-loader">
+                    <style>
+                        .c-loader {
+                            animation: is-rotating 1s infinite;
+                            border: 12px solid #e5e5e5;
+                            border-radius: 50%;
+                            border-top-color: #005dbb;
+                            height: 100px;
+                            width: 100px;
+                        }
+                        @keyframes is-rotating {
+                            to {
+                                transform: rotate(1turn);
+                            }
+                        }
+                    </style>
+                </div>
+            </div>
+            
+        </div>
+        <!-- Main -->
+        
+        <!-- Bootstrap CDN -->
+        <script>
+            function loadEnabled(){
+                document.getElementById('fullscreen').style.display = 'block';
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

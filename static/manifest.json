@@ -1,0 +1,15 @@
+{
+    "name": "Dmapla Sys",
+    "short_name": "Dmapla Sys",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#0069d9",
+    "background_color": "#0069d9",
+    "icons": [
+        {
+            "src": "/static/logo/logoPWA.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
