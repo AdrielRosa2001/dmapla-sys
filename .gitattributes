@@ -2,3 +2,6 @@
 .HTML linguist-detectable=false
 .CSS linguist-detectable=false
 .JavaScript linguist-detectable=false
+HTML linguist-detectable=false
+CSS linguist-detectable=false
+JavaScript linguist-detectable=false
