@@ -11,3 +11,5 @@ python-barcode
 pyodbc
 pywin32
 Pillow
+pyautogui
+pyodbc
