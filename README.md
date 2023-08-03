@@ -1,5 +1,5 @@
 ## Update - Nova Funcionalidade adicionada:
-### [Gerar Placas](#Gerar_Placas:)
+### [Gerar Placas](#Gerar_Placas)
 > Adriel Rosa (update 03/08/2023  18:51 PM)
 
 # Dmapla Sys
@@ -75,7 +75,7 @@ Sistema Web Feito em Flask destinado a uso interno da empresa D'mapla - Utilidad
 
   ###
 
-  ## Gerar_Placas:
+  ## Gerar_Placas
 
   ![preview](./demo/gerar-placa.gif)
   
