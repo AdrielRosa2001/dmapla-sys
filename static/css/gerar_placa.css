@@ -1,0 +1,54 @@
+.titles{
+    display: none;
+    font-weight: bold;
+}
+.add-btn{
+    border: none; 
+    width: 50px; 
+    height: 50px; 
+    background-color: #fff; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    transition: 0.3s;
+}
+.add-btn:hover{
+    width: 60px;
+    height: 60px;
+}
+.rmv-btn{
+    display: none;
+}
+.blocks{
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.pagina-toda{
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    height: 440px;
+    box-shadow: 0px 8px 12px grey;
+}
+.rows{
+    display: flex;
+    flex-direction: row;
+    width: 330px;
+    height: 88px;
+}
+.blocks{
+    width: 165px;
+    height: 88px;
+    border: 1px solid black;
+    background-color: #fff;
+}
+#input_item {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.8);
+}

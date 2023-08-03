@@ -8,7 +8,7 @@
         <!-- Bootstrap CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-        
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     </head>
     <body>
         <!-- Navbar -->
@@ -55,6 +55,11 @@
                             <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
                                 
                                 <input type="number" name="codigo" id="codigo">
+                                <script>
+                                    $(document).ready(function(){
+                                      $("#codigo").focus();
+                                    });
+                                </script>
                                 <button class="btn-enviar btn btn-primary" type="submit" formaction="/consultar" formmethod="post" onclick="loadEnabled()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

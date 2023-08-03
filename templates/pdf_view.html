@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Painel do Usuário - Dmapla Sys</title>
+        <title>Capturar Código - Dmapla Sys</title>
         <link rel="icon" href="{{url_for('static', filename='logo/icon.png')}}" type="image/png">
         <!-- Bootstrap CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -39,27 +39,13 @@
         <!-- Jumbotron -->
         <div class="jumbotron jumbotron-fluid bg-light text-center py-2 mb-0">
             <div class="container">
-                <h1 class="display-4" style="font-size: 40px !important;">Seja bem vindo! {{username}}</h1>
-                <p class="lead">Painel do sistema.</p>
-                <br>
-                <form action="" method="post">
-                    <div class="painel-btn" >
-                        <div class="cont-painel-btn">
-                            <button class="btn-consultar btn btn-primary" type="submit" formaction="/consulta" formmethod="post" onclick="loadEnabled()"><svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg><b>Consultar Produtos</b></button>
-                            <button class="btn-consultar btn btn-primary" type="submit" formaction="/perfil" formmethod="post" onclick="loadEnabled()"><svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                </svg><b>Perfil</b></button>
-                        </div>
-                        <div class="cont-painel-btn">
-                            <button class="btn-consultar btn btn-primary" type="submit" formaction="/gerar_placa" formmethod="post" onclick="loadEnabled()"><svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
-                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z"/>
-                              </svg><b>Gerar Placas</b></button>
-                        </div>
-                    </div>
-                </form>
+                <div style="width: 100%;display: flex;/* align-items: flex-end; */justify-content: flex-start;">
+                    <a href="/gerar_placa" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                      </svg> Voltar</a>
+                </div>
+                <h3 class="display-7">PDF Gerado:</h1>
+                    <embed src="{{ url_for('static', filename=pdf_file) }}" width="100%" height="700" type='application/pdf'>
             </div>
         </div>
         <div id="fullscreen">
@@ -84,13 +70,17 @@
             </div>
             
         </div>
-        <!-- Main -->
-        <!-- Bootstrap CDN -->
         <script>
+            window.onload = function() {
+                document.getElementById("foto_codigo").click();
+            }
+
             function loadEnabled(){
                 document.getElementById('fullscreen').style.display = 'block';
             }
         </script>
+        <!-- Main -->
+        <!-- Bootstrap CDN -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>

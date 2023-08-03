@@ -1,10 +1,13 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select
 import db_conection
 import code_generator
 import pathlib
 from datetime import datetime
+import pyglp
+import os
+import json
 
 
 app = Flask(__name__, template_folder='templates')
@@ -215,13 +218,9 @@ def users_manager():
 @app.route('/logs_system', methods=['POST'])
 def log_system():
     if session['username'] == "admin":
-        #logs_sys = Logs.query.all()
-        #logs_sys_ = Logs.select(Usuarios.id).order_by(Usuarios.id.desc())
 
         stmt = select(Logs).order_by(Logs.id.desc())
         logs_sys_ = db.session.execute(stmt).fetchall()
-        print(logs_sys_)
-        print(type(logs_sys_))
         
 
         return render_template('logs_sys.html', username=session['username'], logs_sys=logs_sys_)
@@ -259,6 +258,37 @@ def save_configs():
     else:
         return redirect(url_for('index'))
 
+@app.route('/gerar_placa', methods=['GET','POST'])
+def gerar_placas():
+    if session['username'] != "" and session['username'] != None:
+        return render_template('gerar_placa.html')
+    else:
+        redirect(url_for('index'))
+
+@app.route('/gerar_pagina', methods=['POST'])
+def gerar_pagina():
+    if session['username'] != "" and session['username'] != None:
+        lista_codes = [] #class dict
+        string_full = str(request.form['lista']).split(",")
+        for i in string_full:
+            if i != "":
+                lista_codes.append(i)
+        list_dicionario = pyglp.DictGen().generateDictAuto(lista_codes=lista_codes)
+        objeto_pyglp = pyglp.PyGLP()
+        objeto_pyglp.initialize(session['username'], list_dicionario)
+        path_arquivo = "/files/placas_de_preco/{user}/".format(user=session['username'])+str(objeto_pyglp.pdf_file_name)
+        salvarLog(f"{session['username']}", f"<PDF-LABEL-GENERATE> | file: {objeto_pyglp.pdf_file_name}")
+        return render_template('pdf_view.html', pdf_file=path_arquivo)
+        
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/abrir_pdf', methods=['GET'])
+def abrir_pdf():
+    #path_arquivo = f"/files/placas_de_preco/admin/"+"admin_01-08-2023_15-46-52.pdf"
+    path_arquivo = "/files/placas_de_preco/{user}/".format(user=session['username'])
+    return render_template('pdf_view.html', pdf_file=path_arquivo)
+
 def salvarLog(user_, action_):
     user = user_
     date = datetime.today().strftime('%Y-%m-%d')
@@ -271,13 +301,14 @@ def salvarLog(user_, action_):
 # Metodo RUN
 """
 Cole seu codigo aqui: 
+
+
+"""
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         db_consulta = db_conection.ServerDB()
     app.run(debug=True)
-"""
-
 
 """
 Cole seu codigo aqui: 
@@ -292,11 +323,4 @@ if __name__ == '__main__':
     print("!- Server STOP -!")
 
 """
-if __name__ == '__main__':
-    db_consulta = db_conection.ServerDB()
-    from waitress import serve
-    host = "0.0.0.0"
-    port = 5000
-    print(f"!- Server Start | HOST: {host} | PORT: {port} -!")
-    serve(app, host=host, port=port)
-    print("!- Server STOP -!")
+

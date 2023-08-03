@@ -6,3 +6,8 @@ waitress
 opencv-python
 pathlib
 pyzbar
+openpyxl
+python-barcode
+pyodbc
+pywin32
+Pillow
