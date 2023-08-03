@@ -1,3 +1,7 @@
+## Update - Nova Funcionalidade adicionada:
+### [Gerar Placas](#Gerar_Placas:)
+> Adriel Rosa (update 03/08/2023  18:51 PM)
+
 # Dmapla Sys
 
 Sistema Web Feito em Flask destinado a uso interno da empresa D'mapla - Utilidades para o lar
@@ -68,6 +72,14 @@ Sistema Web Feito em Flask destinado a uso interno da empresa D'mapla - Utilidad
   ![preview](./demo/log_sys.png)
   
   - Painel destinado a exibição de logs do sistema (Apenas o admin do sistema tem acesso ao painel).
+
+  ###
+
+  ## Gerar_Placas:
+
+  ![preview](./demo/gerar-placas.gif)
+  
+  - Funcionalidade que permite a criação de 10 rotulos por folha atravez de inputs de codigos de barra dos produtos cadastrado no banco de dados da empresa.
   
   ###
 
