@@ -77,7 +77,7 @@ Sistema Web Feito em Flask destinado a uso interno da empresa D'mapla - Utilidad
 
   ## Gerar_Placas:
 
-  ![preview](./demo/gerar-placas.gif)
+  ![preview](./demo/gerar-placa.gif)
   
   - Funcionalidade que permite a criação de 10 rotulos por folha atravez de inputs de codigos de barra dos produtos cadastrado no banco de dados da empresa.
   
